@@ -19,7 +19,14 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
+    'allowed_origins' => [
+        env('FRONTEND_URL', 'http://localhost:3000'),
+        'http://localhost:5173',
+        'capacitor://localhost',  // Add this for Capacitor
+        'ionic://localhost',      // Add this for Ionic
+        'http://localhost',       // Add this for general localhost
+        '*'                       // Be careful with this in production
+    ],
 
     'allowed_origins_patterns' => [],
 
