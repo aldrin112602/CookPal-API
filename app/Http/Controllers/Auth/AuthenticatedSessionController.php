@@ -15,7 +15,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        return response()->json($request->only("email","password"));
         
         $request->authenticate();
 
