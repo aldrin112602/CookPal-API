@@ -25,7 +25,8 @@ return [
         'capacitor://localhost',  // Add this for Capacitor
         'ionic://localhost',      // Add this for Ionic
         'http://localhost',       // Add this for general localhost
-        '*'                       // Be careful with this in production
+        '*',                      // Be careful with this in production
+        'http://localhost:8100'
     ],
 
     'allowed_origins_patterns' => [],
