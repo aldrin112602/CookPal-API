@@ -8,33 +8,15 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-
-/** ============ REGISTER ======================
- * Accept: application/json
- * {
-  "name": "Aldrin Caballero",
-  "email": "caballeroaldrin02@gmail.com",
-  "username": "aldrin02",
-  "password": "aldrin02",
-  "password_confirmation": "aldrin02"
- * } 
- */
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
     ->name('register');
-/***  ============ END REGISTER ================ */
 
-/** ============== LOGIN ======================
- * Accept: application/json
- * {
-  "email": "caballeroaldrin02@gmail.com",
-  "password": "aldrin02",
- * } 
- */
+
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
     ->name('login');
-/***  ============ END LOGIN ================ */
+
 
 
 

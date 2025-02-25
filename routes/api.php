@@ -11,12 +11,15 @@ Route::prefix('/user')->group(function () {
         return $request->user();
     });
 
-    // Update user profile
-    Route::middleware(['auth:sanctum'])->post('/update_profile', [UserProfileController::class,'updateProfilePhoto'])->name('user.update_profile');
+    // Update user profile photo
+    Route::middleware(['auth:sanctum'])->post('/update_profile', [UserProfileController::class, 'updateProfilePhoto'])->name('user.update_profile');
+
+    // Update user profile info
+    Route::middleware(['auth:sanctum'])->post('/update_info', [UserProfileController::class, 'updatePersonalInformation'])->name('user.update_profile_info');
 });
 
 
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
