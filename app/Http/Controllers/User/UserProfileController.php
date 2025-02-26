@@ -43,22 +43,25 @@ class UserProfileController extends Controller
         ]);
 
         // Check if the current password is provided and matches
-        if (isset($validated['current_password'])) {
-            if (!Hash::check($validated['current_password'], $user->password)) {
+        if ($request->filled('password')) {
+            if (!Hash::check($request->input('password'), $user->password)) {
                 return response()->json([
-                    'message' => 'The provided password does not match our records.',
+                    'message' => 'The provided password does not match our records',
+                    'errors' => [
+                        'password' => ['The provided password does not match our records']
+                    ]
                 ], 401);
             }
 
             // Update password if new password is provided
-            if (isset($validated['new_password'])) {
+            if ($request->filled('new_password')) {
                 $user->update([
-                    'password' => Hash::make($validated['new_password']),
+                    'password' => Hash::make($request->input('new_password')),
                 ]);
             }
         }
 
-
+        // Update other personal information
         $user->update([
             'name' => $validated['name'],
             'email' => $validated['email'],
