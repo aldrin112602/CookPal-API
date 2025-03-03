@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordResetMail;
@@ -16,7 +17,7 @@ class PasswordResetMailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function sendOtp(Request $request)
+    public function sendOtp(Request $request): JsonResponse
     {
         $request->validate([
             'email' => 'required|email|exists:users,email'
