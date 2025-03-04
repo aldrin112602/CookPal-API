@@ -26,7 +26,8 @@ return [
         'ionic://localhost',      // Add this for Ionic
         'http://localhost',       // Add this for general localhost
         '*',                      // Be careful with this in production
-        'http://localhost:8100'
+        'http://localhost:8100',
+        'http://192.168.64.32:8000',
     ],
 
     'allowed_origins_patterns' => [],
