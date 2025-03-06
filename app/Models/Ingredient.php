@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Recipe;
 
-class Ingredients extends Model
+class Ingredient extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'recipe_id',
-        'recipe_name',
+        'ingredient_name',
         'quantity',
         'unit',
         'price',

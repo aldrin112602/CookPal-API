@@ -12,17 +12,18 @@ class RecipeController extends Controller
     public function store(Request $request): JsonResponse
     {
         $user = $request->user();
-        $validated = $request->validate([
-            'title' => ['required'],
-            'description' => ['required'],
-            'preparation_time' => ['required', 'numeric'],
-            'serves' => ['required', 'numeric'],
-            'cooking_instructions' => ['required', 'string'],
-        ]);
 
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'preparation_time' => 'required|numeric',
+            'serves' => 'required|numeric',
+            'cooking_instructions' => 'required|string',
+        ]);
 
         $recipe = Recipe::create([
             'user_id' => $user->id,
+            'date_posted' => now(),
             'title' => $validated['title'],
             'description' => $validated['description'],
             'preparation_time' => $validated['preparation_time'],
@@ -30,18 +31,31 @@ class RecipeController extends Controller
             'cooking_instructions' => $validated['cooking_instructions'],
         ]);
 
-
         return response()->json(['message' => 'Recipe added successfully', 'recipe' => $recipe]);
     }
 
-    public function update(Request $request): JsonResponse
+    public function update(Request $request, $id): JsonResponse
     {
+        $recipe = Recipe::findOrFail($id);
 
+        $validated = $request->validate([
+            'title' => 'sometimes|string',
+            'description' => 'sometimes|string',
+            'preparation_time' => 'sometimes|numeric',
+            'serves' => 'sometimes|numeric',
+            'cooking_instructions' => 'sometimes|string',
+        ]);
+
+        $recipe->update($validated);
+
+        return response()->json(['message' => 'Recipe updated successfully', 'recipe' => $recipe]);
     }
 
-
-    public function drop(Request $request): JsonResponse
+    public function drop($id): JsonResponse
     {
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
 
+        return response()->json(['message' => 'Recipe deleted successfully']);
     }
 }

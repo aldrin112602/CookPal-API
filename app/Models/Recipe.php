@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Ingredients;
+use App\Models\Ingredient;
 
 class Recipe extends Model
 {
@@ -29,6 +29,6 @@ class Recipe extends Model
 
     public function ingredients(): HasMany
     {
-        return $this->hasMany(Ingredients::class);
+        return $this->hasMany(Ingredient::class);
     }
 }
