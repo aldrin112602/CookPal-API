@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Features\IngredientsController;
 use App\Http\Controllers\Features\RecipeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,26 @@ Route::prefix('/user')->group(function () {
     Route::middleware(['auth:sanctum'])
         ->delete('/delete_recipe', [RecipeController::class, 'drop'])
         ->name('user.delete_recipe');
+
+
+
+
+    // Add ingredient
+    Route::middleware(['auth:sanctum'])
+        ->post('/add_ingredient', [IngredientsController::class, 'store'])
+        ->name('user.add_ingredient');
+
+
+    // Update ingredient
+    Route::middleware(['auth:sanctum'])
+        ->put('/update_ingredient', [IngredientsController::class, 'update'])
+        ->name('user.update_ingredient');
+
+
+    // Delete ingredient
+    Route::middleware(['auth:sanctum'])
+        ->delete('/delete_ingredient', [IngredientsController::class, 'drop'])
+        ->name('user.delete_ingredient');
 });
 
 
