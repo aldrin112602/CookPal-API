@@ -18,14 +18,21 @@ class UserProfileController extends Controller
         ]);
 
         $user = $request->user();
-        $path = $request->file('photo')->store('profiles', 'public');
+        $file = $request->file('photo');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $destinationPath = public_path('profiles');
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+        $file->move($destinationPath, $filename);
         $user->update([
-            'profile' => $path
+            'profile' => 'profiles/' . $filename
         ]);
 
         return response()->json([
             'message' => 'Profile photo updated successfully',
-            'profile_url' => asset('storage/' . $path),
+            'profile_url' => asset('profiles/' . $filename),
         ]);
     }
 

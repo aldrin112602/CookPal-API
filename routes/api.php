@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Features\HomeController;
 use App\Http\Controllers\Features\IngredientsController;
 use App\Http\Controllers\Features\RecipeController;
 use Illuminate\Http\Request;
@@ -62,6 +63,13 @@ Route::prefix('/user')->group(function () {
     Route::middleware(['auth:sanctum'])
         ->delete('/delete_ingredient', [IngredientsController::class, 'drop'])
         ->name('user.delete_ingredient');
+
+
+
+    // Home
+    Route::middleware(['auth:sanctum'])
+        ->get('/home', [HomeController::class, 'index'])
+        ->name('user.home');
 });
 
 
