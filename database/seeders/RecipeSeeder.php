@@ -27,6 +27,7 @@ class RecipeSeeder extends Seeder
                 Recipe::create([
                     'user_id' => $user->id,
                     'title' => 'Sample Recipe ' . Str::random(5),
+                    'category' => 'Sample Category ' . Str::random(5),
                     'image' => null,
                     'description' => 'This is a sample description for a recipe.',
                     'preparation_time' => now()->setTime(rand(0, 2), rand(10, 59))->format('H:i:s'),

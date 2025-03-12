@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
+            $table->string('category');
             $table->string('image')->nullable(true);
             $table->text('description');
             $table->time('preparation_time');

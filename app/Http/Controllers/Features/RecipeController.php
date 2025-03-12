@@ -15,6 +15,7 @@ class RecipeController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string',
+            'category' => 'required|string',
             'description' => 'required|string',
             'preparation_time' => 'required|numeric',
             'serves' => 'required|numeric',
@@ -25,6 +26,7 @@ class RecipeController extends Controller
             'user_id' => $user->id,
             'date_posted' => now(),
             'title' => $validated['title'],
+            'category' => $validated['category'],
             'description' => $validated['description'],
             'preparation_time' => $validated['preparation_time'],
             'serves' => $validated['serves'],
@@ -40,6 +42,7 @@ class RecipeController extends Controller
 
         $validated = $request->validate([
             'title' => 'sometimes|string',
+            'category' => 'sometimes|string',
             'description' => 'sometimes|string',
             'preparation_time' => 'sometimes|numeric',
             'serves' => 'sometimes|numeric',

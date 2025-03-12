@@ -3,6 +3,7 @@
 use App\Http\Controllers\Features\HomeController;
 use App\Http\Controllers\Features\IngredientsController;
 use App\Http\Controllers\Features\RecipeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserProfileController;
@@ -70,6 +71,12 @@ Route::prefix('/user')->group(function () {
     Route::middleware(['auth:sanctum'])
         ->get('/home', [HomeController::class, 'index'])
         ->name('user.home');
+
+
+    // View user included recipes
+    Route::middleware(['auth:sanctum'])
+        ->get('/profile/{id}', [UserController::class, 'index'])
+        ->name('user.view_user_with_recipes');
 });
 
 
